@@ -11,9 +11,12 @@ import java.io.IOException;
 public class GameApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+
         Parent root = FXMLLoader.load(getClass().getResource("/ui.fxml"));
         stage.setTitle("Sokoban game");
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, 800, 800);
+        scene.getRoot().requestFocus();
+        stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
     }
