@@ -26,6 +26,7 @@ import static javafx.scene.paint.Color.*;
 public class GameController {
 
     private GameModel model = new GameModel();
+    //private GameModel model;
 
     private Position selected;
     private Player player;
@@ -41,11 +42,12 @@ public class GameController {
         createBalls();
         createGoals();
         board.setOnKeyPressed(this::handleKeyPress);
+        //this.model = new GameModel();
     }
 
     private void createBoard() {
-        for(int i = 0; i < 7; i++){
-            for (int j = 0; j < 7; j++) {
+        for(int i = 0; i < 9; i++){
+            for (int j = 0; j < 9; j++) {
                 var tile = createTile();
                 //tile.setOnKeyPressed(this::handleKeyPress);
                 board.add(tile, i, j);
@@ -71,7 +73,7 @@ public class GameController {
     }
 
     private Circle createPlayerHelp(){
-        var player = new Circle(50);
+        var player = new Circle(40);
         player.setFill(RED);
         //player.getStyleClass().add("player");
         return player;
@@ -100,7 +102,7 @@ public class GameController {
     }
 
     private Circle createBall(){
-        var ball = new Circle(50);
+        var ball = new Circle(40);
         ball.setFill(YELLOW);
         return ball;
     }
@@ -114,8 +116,8 @@ public class GameController {
 
     private Rectangle createGoal(){
         var goal = new Rectangle();
-        goal.setWidth(100);
-        goal.setHeight(100);
+        goal.setWidth(80);
+        goal.setHeight(80);
         goal.setFill(DARKGREY);
         return goal;
     }
@@ -148,6 +150,9 @@ public class GameController {
             case A:
             case LEFT:
                 model.moveThere(Direction.LEFT);
+                break;
+            case V:
+                model.saveGame();
                 break;
             default:
                 System.out.println("Invalid key");

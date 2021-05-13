@@ -1,0 +1,80 @@
+/home/adma/.sdkman/candidates/java/16.0.1-open/bin/javadoc
+@options
+@packages
+-classpath
+'/home/adma/.m2/repository/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar:/home/adma/.m2/repository/org/openjfx/javafx-controls/16/javafx-controls-16.jar:/home/adma/.m2/repository/org/openjfx/javafx-controls/16/javafx-controls-16-linux.jar:/home/adma/.m2/repository/org/openjfx/javafx-graphics/16/javafx-graphics-16.jar:/home/adma/.m2/repository/org/openjfx/javafx-graphics/16/javafx-graphics-16-linux.jar:/home/adma/.m2/repository/org/openjfx/javafx-base/16/javafx-base-16.jar:/home/adma/.m2/repository/org/openjfx/javafx-base/16/javafx-base-16-linux.jar:/home/adma/.m2/repository/org/openjfx/javafx-fxml/16/javafx-fxml-16.jar:/home/adma/.m2/repository/org/openjfx/javafx-fxml/16/javafx-fxml-16-linux.jar:/home/adma/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.7.1/junit-jupiter-engine-5.7.1.jar:/home/adma/.m2/repository/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar:/home/adma/.m2/repository/org/junit/platform/junit-platform-engine/1.7.1/junit-platform-engine-1.7.1.jar:/home/adma/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/adma/.m2/repository/org/junit/platform/junit-platform-commons/1.7.1/junit-platform-commons-1.7.1.jar:/home/adma/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.7.1/junit-jupiter-api-5.7.1.jar:/home/adma/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/3.0.0/jakarta.xml.bind-api-3.0.0.jar:/home/adma/.m2/repository/com/sun/activation/jakarta.activation/2.0.0/jakarta.activation-2.0.0.jar:/home/adma/.m2/repository/org/glassfish/jaxb/jaxb-runtime/3.0.0/jaxb-runtime-3.0.0.jar:/home/adma/.m2/repository/org/glassfish/jaxb/jaxb-core/3.0.0/jaxb-core-3.0.0.jar:/home/adma/.m2/repository/org/glassfish/jaxb/txw2/3.0.0/txw2-3.0.0.jar:/home/adma/.m2/repository/com/sun/istack/istack-commons-runtime/4.0.0/istack-commons-runtime-4.0.0.jar'
+-encoding
+'UTF-8'
+-protected
+--release
+16
+-sourcepath
+'/mnt/c/Users/Ádám/swe/game_project/src/main/java:/mnt/c/Users/Ádám/swe/game_project/target/generated-sources/annotations'
+-author
+-bottom
+'Copyright &#169; 2021. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/mnt/c/Users/Ádám/swe/game_project/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'game_project 1.0 API'
+-use
+-version
+-windowtitle
+'game_project 1.0 API'
+game
+game
+game
+game.model
+game.model
+game.model
+game.model
+game.model
+game.model
+game.model.xmlhandler
+game.model.xmlhandler
+game.model.xmlhandler
+game.model.xmlhandler
+/home/adma/.m2/repository/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar = 1620737768494
+/home/adma/.m2/repository/org/openjfx/javafx-controls/16/javafx-controls-16.jar = 1616961560289
+/home/adma/.m2/repository/org/openjfx/javafx-controls/16/javafx-controls-16-linux.jar = 1616961562468
+/home/adma/.m2/repository/org/openjfx/javafx-graphics/16/javafx-graphics-16.jar = 1616961560243
+/home/adma/.m2/repository/org/openjfx/javafx-graphics/16/javafx-graphics-16-linux.jar = 1616961562492
+/home/adma/.m2/repository/org/openjfx/javafx-base/16/javafx-base-16.jar = 1616961560402
+/home/adma/.m2/repository/org/openjfx/javafx-base/16/javafx-base-16-linux.jar = 1616961562589
+/home/adma/.m2/repository/org/openjfx/javafx-fxml/16/javafx-fxml-16.jar = 1619616290887
+/home/adma/.m2/repository/org/openjfx/javafx-fxml/16/javafx-fxml-16-linux.jar = 1619616291093
+/home/adma/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.7.1/junit-jupiter-engine-5.7.1.jar = 1619611603896
+/home/adma/.m2/repository/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar = 1619611603185
+/home/adma/.m2/repository/org/junit/platform/junit-platform-engine/1.7.1/junit-platform-engine-1.7.1.jar = 1619611604010
+/home/adma/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar = 1615636511690
+/home/adma/.m2/repository/org/junit/platform/junit-platform-commons/1.7.1/junit-platform-commons-1.7.1.jar = 1619611604029
+/home/adma/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.7.1/junit-jupiter-api-5.7.1.jar = 1619611603994
+/home/adma/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/3.0.0/jakarta.xml.bind-api-3.0.0.jar = 1618156276518
+/home/adma/.m2/repository/com/sun/activation/jakarta.activation/2.0.0/jakarta.activation-2.0.0.jar = 1618156276603
+/home/adma/.m2/repository/org/glassfish/jaxb/jaxb-runtime/3.0.0/jaxb-runtime-3.0.0.jar = 1620743023543
+/home/adma/.m2/repository/org/glassfish/jaxb/jaxb-core/3.0.0/jaxb-core-3.0.0.jar = 1620743023346
+/home/adma/.m2/repository/org/glassfish/jaxb/txw2/3.0.0/txw2-3.0.0.jar = 1620743023212
+/home/adma/.m2/repository/com/sun/istack/istack-commons-runtime/4.0.0/istack-commons-runtime-4.0.0.jar = 1620743023156
+/mnt/c/Users/Ádám/swe/game_project/src/main/java = 1620258035435
+/mnt/c/Users/Ádám/swe/game_project/target/generated-sources/annotations = 1620739496803
+/mnt/c/Users/Ádám/swe/game_project/target/site/apidocs/allclasses-index.html = 1620927646900
+/mnt/c/Users/Ádám/swe/game_project/target/site/apidocs/allpackages-index.html = 1620927646911
+/mnt/c/Users/Ádám/swe/game_project/target/site/apidocs/element-list = 1620927646544
+/mnt/c/Users/Ádám/swe/game_project/target/site/apidocs/help-doc.html = 1620927647001
+/mnt/c/Users/Ádám/swe/game_project/target/site/apidocs/index-all.html = 1620927646963
+/mnt/c/Users/Ádám/swe/game_project/target/site/apidocs/index.html = 1620927646876
+/mnt/c/Users/Ádám/swe/game_project/target/site/apidocs/jquery-ui.overrides.css = 1620927647228
+/mnt/c/Users/Ádám/swe/game_project/target/site/apidocs/member-search-index.js = 1620927646940
+/mnt/c/Users/Ádám/swe/game_project/target/site/apidocs/module-search-index.js = 1620927646919
+/mnt/c/Users/Ádám/swe/game_project/target/site/apidocs/overview-summary.html = 1620927646974
+/mnt/c/Users/Ádám/swe/game_project/target/site/apidocs/overview-tree.html = 1620927646863
+/mnt/c/Users/Ádám/swe/game_project/target/site/apidocs/package-search-index.js = 1620927646931
+/mnt/c/Users/Ádám/swe/game_project/target/site/apidocs/script.js = 1620927647017
+/mnt/c/Users/Ádám/swe/game_project/target/site/apidocs/search.js = 1620927647039
+/mnt/c/Users/Ádám/swe/game_project/target/site/apidocs/stylesheet.css = 1620927647010
+/mnt/c/Users/Ádám/swe/game_project/target/site/apidocs/tag-search-index.js = 1620927646945
+/mnt/c/Users/Ádám/swe/game_project/target/site/apidocs/type-search-index.js = 1620927646935

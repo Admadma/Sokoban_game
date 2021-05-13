@@ -3,6 +3,9 @@ package game.model;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
+/**
+ * Class declaring default methods of used entities.
+ */
 public class Entity {
 
     private final EntityType type;

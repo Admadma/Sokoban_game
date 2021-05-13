@@ -2,29 +2,69 @@ package game.model;
 
 import javafx.beans.property.ObjectProperty;
 
+import game.model.xmlhandler.*;
+
 public class GameModel {
 
     private final Entity player;
     private final Entity[] walls;
     private final Entity[] balls;
     private final Entity[] goals;
+    private int numberOfMoves = 0;
 
     public GameModel(){
         this.player = new Entity(EntityType.Player, new Position(1,1));
         this.walls = new Entity[] {
-                //new Entity(EntityType.Wall, new Position(2,2)),
-                new Entity(EntityType.Wall, new Position(2,3)),
-                //ew Entity(EntityType.Wall, new Position(2,4)),
+                new Entity(EntityType.Wall, new Position(0,0)),
+                new Entity(EntityType.Wall, new Position(0,1)),
+                new Entity(EntityType.Wall, new Position(0,2)),
+                new Entity(EntityType.Wall, new Position(0,3)),
+                new Entity(EntityType.Wall, new Position(0,4)),
+                new Entity(EntityType.Wall, new Position(1,0)),
+                new Entity(EntityType.Wall, new Position(1,4)),
+                new Entity(EntityType.Wall, new Position(2,0)),
+                new Entity(EntityType.Wall, new Position(2,4)),
+                new Entity(EntityType.Wall, new Position(2,6)),
+                new Entity(EntityType.Wall, new Position(2,7)),
+                new Entity(EntityType.Wall, new Position(2,8)),
                 new Entity(EntityType.Wall, new Position(3,0)),
-                new Entity(EntityType.Wall, new Position(3,1))
+                new Entity(EntityType.Wall, new Position(3,4)),
+                new Entity(EntityType.Wall, new Position(3,6)),
+                new Entity(EntityType.Wall, new Position(3,8)),
+                new Entity(EntityType.Wall, new Position(4,0)),
+                new Entity(EntityType.Wall, new Position(4,1)),
+                new Entity(EntityType.Wall, new Position(4,2)),
+                new Entity(EntityType.Wall, new Position(4,4)),
+                new Entity(EntityType.Wall, new Position(4,5)),
+                new Entity(EntityType.Wall, new Position(4,6)),
+                new Entity(EntityType.Wall, new Position(4,8)),
+                new Entity(EntityType.Wall, new Position(5,1)),
+                new Entity(EntityType.Wall, new Position(5,2)),
+                new Entity(EntityType.Wall, new Position(5,8)),
+                new Entity(EntityType.Wall, new Position(6,1)),
+                new Entity(EntityType.Wall, new Position(6,5)),
+                new Entity(EntityType.Wall, new Position(6,8)),
+                new Entity(EntityType.Wall, new Position(7,1)),
+                new Entity(EntityType.Wall, new Position(7,5)),
+                new Entity(EntityType.Wall, new Position(7,6)),
+                new Entity(EntityType.Wall, new Position(7,7)),
+                new Entity(EntityType.Wall, new Position(7,8)),
+                new Entity(EntityType.Wall, new Position(8,1)),
+                new Entity(EntityType.Wall, new Position(8,2)),
+                new Entity(EntityType.Wall, new Position(8,3)),
+                new Entity(EntityType.Wall, new Position(8,4)),
+                new Entity(EntityType.Wall, new Position(8,5)),
+
         };
         this.balls = new Entity[] {
                 new Entity(EntityType.Ball, new Position(2,2)),
-                new Entity(EntityType.Ball, new Position(1,2))
+                new Entity(EntityType.Ball, new Position(3,2)),
+                new Entity(EntityType.Ball, new Position(2,3))
         };
         this.goals = new Entity[] {
-                new Entity(EntityType.Goal, new Position(4,4)),
-                new Entity(EntityType.Goal, new Position(4,5))
+                new Entity(EntityType.Goal, new Position(3,7)),
+                new Entity(EntityType.Goal, new Position(4,7)),
+                new Entity(EntityType.Goal, new Position(5,7)),
         };
 
     }
@@ -111,6 +151,7 @@ public class GameModel {
         //System.out.println("here");
         if(isValidMove(direction, getPlayerPosition())) {
             playerPositionProperty().setValue(getPlayerPosition().moveTo(direction));
+            numberOfMoves++;
             checkGoals();
         }
         //TODO: vizsgálni hogy célba értek-e a golyók
@@ -122,7 +163,7 @@ public class GameModel {
             if(!ballOnIt(goal))
                 return;
         }
-        System.out.println("complete");
+        System.out.println("complete " + numberOfMoves);
     }
 
     private boolean ballOnIt(Entity goal){
@@ -133,6 +174,27 @@ public class GameModel {
         return false;
     }
 
+    public void saveGame(){
+        try {
+            JavaToXml.createXml(numberOfMoves, player, walls, balls, goals);
+        } catch (Exception e) {
+            System.out.println(e.getStackTrace());
+        }
 
+    }
+
+
+    public static void main(String[] args) {
+        /*
+        try {
+            //TODO: pom.xml <outputDirectory>D:/gameclasses</outputDirectory> átállítani a célmappa hellyét
+            //JavaToXml.createXml();
+            XmlToJava.parseXml();
+        } catch (Exception e){
+            System.out.println(e.getStackTrace());
+        }
+         */
+        //TODO: metódus ami az Entitik koordinátáit egy-egy x és y tömbbe előkészíti
+    }
 
 }
