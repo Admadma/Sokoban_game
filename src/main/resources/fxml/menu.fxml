@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="315.0" prefWidth="322.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.MenuController">
+   <children>
+      <Button layoutX="110.0" layoutY="145.0" mnemonicParsing="false" onAction="#startNewGame" text="Start New Game" />
+      <Button layoutX="105.0" layoutY="188.0" mnemonicParsing="false" onAction="#onLoadGame" text="Load Saved Game" />
+      <Button layoutX="142.0" layoutY="230.0" mnemonicParsing="false" onAction="#onInfo" text="Info" />
+      <Label layoutX="99.0" layoutY="31.0" text="Menu">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Button layoutX="143.0" layoutY="268.0" mnemonicParsing="false" onAction="#onExit" text="Exit" />
+   </children>
+</AnchorPane>

@@ -1,7 +1,6 @@
 package game.model.xmlhandler;
 
 import game.model.Entity;
-import game.model.Position;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.Marshaller;
 
@@ -16,7 +15,6 @@ public class JavaToXml {
 
         int[] playerX = new int[]{player.getPosition().col()};
         gameState.setPlayerXValues(playerX);
-
         int[] playerY = new int[]{player.getPosition().row()};
         gameState.setPlayerYValues(playerY);
 
@@ -25,7 +23,6 @@ public class JavaToXml {
             wallX[i] = walls[i].getPosition().col();
         }
         gameState.setWallXValues(wallX);
-
         int[] wallY = new int[walls.length];
         for(int i = 0; i < walls.length; i++){
             wallY[i] = walls[i].getPosition().row();
@@ -37,7 +34,6 @@ public class JavaToXml {
             ballX[i] = balls[i].getPosition().col();
         }
         gameState.setBallXValues(ballX);
-
         int[] ballY = new int[balls.length];
         for(int i = 0; i < balls.length; i++){
             ballY[i] = balls[i].getPosition().row();
@@ -49,7 +45,6 @@ public class JavaToXml {
             goalX[i] = goals[i].getPosition().col();
         }
         gameState.setGoalXValues(goalX);
-
         int[] goalY = new int[goals.length];
         for(int i = 0; i < goals.length; i++){
             goalY[i] = goals[i].getPosition().row();
@@ -60,6 +55,8 @@ public class JavaToXml {
         Marshaller marshaller = jaxbContext.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
-        marshaller.marshal(gameState, new FileOutputStream("gameOut.xml"));
+
+        String savedDataPath = System.getProperty("user.dir") + "/helperFolder" + "/SavedGameState.xml";
+        marshaller.marshal(gameState, new FileOutputStream(savedDataPath));
     }
 }

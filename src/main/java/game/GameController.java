@@ -1,55 +1,47 @@
 package game;
 
 import game.model.*;
-
 import game.model.GameModel;
-import javafx.beans.value.ObservableListValue;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Rectangle;
-import org.w3c.dom.css.Rect;
 
+import org.tinylog.Logger;
 
 import static javafx.scene.paint.Color.*;
 
 public class GameController {
 
-    private GameModel model = new GameModel();
-    //private GameModel model;
+    private GameModel model;
 
-    private Position selected;
-    private Player player;
     @FXML
     private GridPane board;
 
-
-    @FXML
-    private void initialize() {
+/**
+ * Az initialize() helyett ez felel a pálya létrehozásáért
+ */
+    public void createGame(String loadingType){
+        this.model = new GameModel(loadingType);
         createBoard();
         createPlayer();
         createWalls();
         createBalls();
         createGoals();
         board.setOnKeyPressed(this::handleKeyPress);
-        //this.model = new GameModel();
+        Logger.info("Created the game");
     }
 
     private void createBoard() {
         for(int i = 0; i < 9; i++){
             for (int j = 0; j < 9; j++) {
                 var tile = createTile();
-                //tile.setOnKeyPressed(this::handleKeyPress);
                 board.add(tile, i, j);
             }
         }
@@ -64,10 +56,7 @@ public class GameController {
 
     private void createPlayer() {
         model.playerPositionProperty().addListener(this::entityPositionchange);
-        //var player = new Circle(50).setFill(RED);
         var player = createPlayerHelp();
-        //player.setFocusTraversable(true);
-        //player.setOnKeyPressed(this::handleKeyPress);
         getTile(model.getPlayerPosition()).getChildren().add(player);
 
     }
@@ -75,7 +64,6 @@ public class GameController {
     private Circle createPlayerHelp(){
         var player = new Circle(40);
         player.setFill(RED);
-        //player.getStyleClass().add("player");
         return player;
     }
 
@@ -90,6 +78,7 @@ public class GameController {
     private StackPane createWall(Background background){
         var wall = new StackPane();
         wall.setBackground(background);
+        wall.getStyleClass().add("wall");
         return wall;
     }
 
@@ -124,38 +113,33 @@ public class GameController {
 
 
     private void handleKeyPress(KeyEvent event) {
-        System.out.println(event.getCode().getClass());
-        //Logolni a gombot
-        Position playerPosition = model.getPlayerPosition();
-        System.out.println(playerPosition);
+        Logger.debug("Key pressed: {}", event.getCode());
         whereToMove(event.getCode());
     }
 
     //a kapott betű alapján eldönti melyik irányba kell mozdulnia
     private void whereToMove(KeyCode key){
         switch (key) {
-
-            case W:
             case UP:
                 model.moveThere(Direction.UP);
                 break;
-            case D:
             case RIGHT:
                 model.moveThere(Direction.RIGHT);
                 break;
-            case S:
             case DOWN:
                 model.moveThere(Direction.DOWN);
                 break;
-            case A:
             case LEFT:
                 model.moveThere(Direction.LEFT);
                 break;
-            case V:
+            case S:
                 model.saveGame();
                 break;
+            case Q:
+                model.quitGame();
+                break;
             default:
-                System.out.println("Invalid key");
+                Logger.warn("Invalid key");
                 break;
 
         }
@@ -174,32 +158,10 @@ public class GameController {
 
 
     private void entityPositionchange(ObservableValue<? extends Position> observable, Position oldPosition, Position newPosition){      //TODO: egyelőre sak a játékos pozícióját figyeljük, később lehet valahogy össze kell vonni a golyó figyelésével (mert nem éri meg külön külön figyelni)
-        //Logger.debug("Move: {} -> {}", oldPosition, newPosition);                                                                     //TODO: problémát okozhat-e az hogy it csak golyó és square-ek voltak míg az enyémben lesz fal, player golyó,.. több különböző      //square(tile) elemen állhat player vagy golyó is
+        Logger.debug("Moving entity from: ({}, {}) to ({}, {})", oldPosition.row(), oldPosition.col(), newPosition.row(), newPosition.col());                                                                     //TODO: problémát okozhat-e az hogy it csak golyó és square-ek voltak míg az enyémben lesz fal, player golyó,.. több különböző      //square(tile) elemen állhat player vagy golyó is
         StackPane oldTile = getTile(oldPosition);
         StackPane newTile = getTile(newPosition);
-        //snewTile.getChildren().addAll(oldTile.getChildren());
-        System.out.println("oldchilds: "+ oldTile.getChildren());
-        System.out.println("newChilds" + newTile.getChildren());
         newTile.getChildren().add(oldTile.getChildren().get(oldTile.getChildren().size()-1));
-        System.out.println("------ after");
-        System.out.println("oldchilds: "+ oldTile.getChildren());
-        System.out.println("newChilds" + newTile.getChildren());
-        //oldTile.getChildren().clear();
-        //System.out.println(newTile.lookup("Circle"));
-/*
-        newTile.getChildren().add(oldTile.getChildren().get(oldTile.getChildren().size()-1));
-        if(oldTile.getChildren().size() > 1){
-            oldTile.getChildren().remove(oldTile.getChildren().get(oldTile.getChildren().size()-1));
-        }
-*/
-
-        System.out.println(newTile.getChildren());
-        //newTile.getChildren().remove(newTile.getChildren().size()-1);
-        System.out.println(newTile.getChildren());
-        //newTile.getChildren().remove(newTile.lookup("Player"));
-        //newTile.getChildren().add(observable.);
-        //newTile.getChildren().remove(observable);
-
     }
 
 

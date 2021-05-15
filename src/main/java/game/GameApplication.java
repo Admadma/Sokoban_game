@@ -5,17 +5,30 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.tinylog.Logger;
 
+import java.io.File;
 import java.io.IOException;
 
 public class GameApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        String helperFolder = System.getProperty("user.dir") + "/helperFolder";
+        File file = new File(helperFolder);
+        if(!file.exists()){
+            if(file.mkdir()){
+                Logger.debug("Created folder for savefiles");
+            } else {
+                Logger.warn("Failed to create folder");
+            }
+        } else {
+            Logger.debug("Folder already exists");
+        }
 
-        Parent root = FXMLLoader.load(getClass().getResource("/ui.fxml"));
+        Logger.info("Starting application");
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/menu.fxml"));
         stage.setTitle("Sokoban game");
-        Scene scene = new Scene(root, 800, 800);
-        scene.getRoot().requestFocus();
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
