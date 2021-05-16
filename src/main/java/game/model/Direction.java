@@ -1,5 +1,8 @@
 package game.model;
 
+/**
+ * Enum representing the four cardinal directions.
+ */
 public enum Direction {
     UP(-1, 0),
     RIGHT(0,1),
@@ -15,28 +18,25 @@ public enum Direction {
         this.colChange = colChange;
     }
 
+    /**
+     * Returns the change in the y-coordinate when moving a step in this
+     * direction.
+     *
+     * @return the change in the y-coordinate when moving a step in this
+     * direction
+     */
     public int getRowChange() {
         return rowChange;
     }
 
+    /**
+     * Returns the change in the x-coordinate when moving a step in this
+     * direction.
+     *
+     * @return the change in the x-coordinate when moving a step in this
+     * direction
+     */
     public int getColChange() {
         return colChange;
     }
-
-    /*
-//erre nem biztos, hogy lesz szükség
-    public static Direction of(int rowChange, int colChange) {  // of(1, -1) visszaadja az adott irányhoz tartozó nevet (ez DOWN_LEFT) (main method példa)        hogyha olyan irányt kapunk ami nincs a felsorolt 4 között
-        for (var direction : values()) {
-            if (direction.rowChange == rowChange && direction.colChange == colChange) {
-                return direction;
-            }
-        }
-        throw new IllegalArgumentException();
-    }
-
-    public static void main(String[] args) {
-        System.out.println(of(0, -1));
-        //System.out.println(of(1, -2));
-    }
-    */
 }

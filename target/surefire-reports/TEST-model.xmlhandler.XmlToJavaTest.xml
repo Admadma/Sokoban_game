@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="model.xmlhandler.XmlToJavaTest" time="0.03" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="model.xmlhandler.XmlToJavaTest" time="0.041" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="16"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
@@ -20,7 +20,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="localRepository" value="/home/adma/.m2/repository"/>
     <property name="sun.boot.library.path" value="/home/adma/.sdkman/candidates/java/16.0.1-open/lib"/>
-    <property name="sun.java.command" value="/mnt/c/Users/Ádám/swe/game_project/target/surefire/surefirebooter18082259595136779052.jar /mnt/c/Users/Ádám/swe/game_project/target/surefire 2021-05-16T03-10-00_477-jvmRun1 surefire3535420891664414740tmp surefire_09249855941755968346tmp"/>
+    <property name="sun.java.command" value="/mnt/c/Users/Ádám/swe/game_project/target/surefire/surefirebooter13279658078134959919.jar /mnt/c/Users/Ádám/swe/game_project/target/surefire 2021-05-16T07-35-39_414-jvmRun1 surefire7387721086761443701tmp surefire_015706418121921152817tmp"/>
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
     <property name="java.io.tmpdir" value="/tmp"/>
     <property name="jdk.debug" value="release"/>
@@ -47,7 +47,7 @@
     <property name="java.vm.version" value="16.0.1+9-24"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="60.0"/>
-    <property name="surefire.real.class.path" value="/mnt/c/Users/Ádám/swe/game_project/target/surefire/surefirebooter18082259595136779052.jar"/>
+    <property name="surefire.real.class.path" value="/mnt/c/Users/Ádám/swe/game_project/target/surefire/surefirebooter13279658078134959919.jar"/>
   </properties>
-  <testcase name="testParseXml" classname="model.xmlhandler.XmlToJavaTest" time="0.029"/>
+  <testcase name="testParseXml" classname="model.xmlhandler.XmlToJavaTest" time="0.038"/>
 </testsuite>

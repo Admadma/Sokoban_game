@@ -3,43 +3,46 @@
 import jakarta.xml.bind.annotation.*;
 import lombok.Data;
 
+/**
+ * Blueprint for GameState java objects and XML files.
+ */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-<span class="pc bnc" id="L8" title="All 24 branches missed.">@Data</span>
+<span class="pc bnc" id="L11" title="All 24 branches missed.">@Data</span>
 public class GameState {
 
-<span class="fc" id="L11">    private int numberOfMoves;</span>
+<span class="fc" id="L14">    private int numberOfMoves;</span>
 
     @XmlElementWrapper(name = &quot;playerXValues&quot;)
     @XmlElement(name = &quot;x&quot;)
-<span class="fc" id="L15">    private int[] playerXValues;</span>
+<span class="fc" id="L18">    private int[] playerXValues;</span>
 
     @XmlElementWrapper(name = &quot;playerYValues&quot;)
     @XmlElement(name = &quot;y&quot;)
-<span class="fc" id="L19">    private int[] playerYValues;</span>
+<span class="fc" id="L22">    private int[] playerYValues;</span>
 
     @XmlElementWrapper(name = &quot;wallXValues&quot;)
     @XmlElement(name = &quot;x&quot;)
-<span class="fc" id="L23">    private int[] wallXValues;</span>
+<span class="fc" id="L26">    private int[] wallXValues;</span>
 
     @XmlElementWrapper(name = &quot;wallYValues&quot;)
     @XmlElement(name = &quot;y&quot;)
-<span class="fc" id="L27">    private int[] wallYValues;</span>
+<span class="fc" id="L30">    private int[] wallYValues;</span>
 
     @XmlElementWrapper(name = &quot;ballXValues&quot;)
     @XmlElement(name = &quot;x&quot;)
-<span class="fc" id="L31">    private int[] ballXValues;</span>
+<span class="fc" id="L34">    private int[] ballXValues;</span>
 
     @XmlElementWrapper(name = &quot;ballYValues&quot;)
     @XmlElement(name = &quot;y&quot;)
-<span class="fc" id="L35">    private int[] ballYValues;</span>
+<span class="fc" id="L38">    private int[] ballYValues;</span>
 
     @XmlElementWrapper(name = &quot;goalXValues&quot;)
     @XmlElement(name = &quot;x&quot;)
-<span class="fc" id="L39">    private int[] goalXValues;</span>
+<span class="fc" id="L42">    private int[] goalXValues;</span>
 
     @XmlElementWrapper(name = &quot;goalYValues&quot;)
     @XmlElement(name = &quot;y&quot;)
-<span class="fc" id="L43">    private int[] goalYValues;</span>
+<span class="fc" id="L46">    private int[] goalYValues;</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

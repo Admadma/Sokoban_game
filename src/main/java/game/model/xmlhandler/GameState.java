@@ -3,6 +3,9 @@ package game.model.xmlhandler;
 import jakarta.xml.bind.annotation.*;
 import lombok.Data;
 
+/**
+ * Blueprint for GameState java objects and XML files.
+ */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @Data

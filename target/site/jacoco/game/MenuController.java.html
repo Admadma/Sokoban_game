@@ -18,49 +18,48 @@ import java.io.IOException;
 
     @FXML
     private void startNewGame(ActionEvent event) throws IOException {
-        //startGame(event, &quot;default&quot;);
-<span class="nc" id="L22">        startGame(event, &quot;/DefaultGameState.xml&quot;);</span>
-<span class="nc" id="L23">    }</span>
+<span class="nc" id="L21">        startGame(event, &quot;/DefaultGameState.xml&quot;);</span>
+<span class="nc" id="L22">    }</span>
 
     @FXML
     private void onLoadGame(ActionEvent event) throws IOException {
-<span class="nc" id="L27">        String savedDataPath = System.getProperty(&quot;user.dir&quot;) + &quot;/helperFolder&quot; + &quot;/SavedGameState.xml&quot;;</span>
-<span class="nc" id="L28">        File saveFile = new File(savedDataPath);</span>
-<span class="nc bnc" id="L29" title="All 2 branches missed.">        if(saveFile.exists()){</span>
-<span class="nc" id="L30">            startGame(event, &quot;/SavedGameState.xml&quot;);</span>
+<span class="nc" id="L26">        String savedDataPath = System.getProperty(&quot;user.dir&quot;) + &quot;/helperFolder&quot; + &quot;/SavedGameState.xml&quot;;</span>
+<span class="nc" id="L27">        File saveFile = new File(savedDataPath);</span>
+<span class="nc bnc" id="L28" title="All 2 branches missed.">        if(saveFile.exists()){</span>
+<span class="nc" id="L29">            startGame(event, &quot;/SavedGameState.xml&quot;);</span>
         } else {
-<span class="nc" id="L32">            Logger.warn(&quot;Couldn't find savefile, loading default game&quot;);</span>
-<span class="nc" id="L33">            startNewGame(event);</span>
+<span class="nc" id="L31">            Logger.warn(&quot;Couldn't find savefile, loading default game&quot;);</span>
+<span class="nc" id="L32">            startNewGame(event);</span>
         }
-<span class="nc" id="L35">    }</span>
+<span class="nc" id="L34">    }</span>
 
 
     @FXML
     private void onInfo(ActionEvent event) throws IOException {
-<span class="nc" id="L40">        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();</span>
-<span class="nc" id="L41">        Parent root = FXMLLoader.load(getClass().getResource(&quot;/fxml/InfoMenu.fxml&quot;));</span>
-<span class="nc" id="L42">        stage.setScene(new Scene(root));</span>
-<span class="nc" id="L43">        stage.show();</span>
-<span class="nc" id="L44">    }</span>
+<span class="nc" id="L39">        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();</span>
+<span class="nc" id="L40">        Parent root = FXMLLoader.load(getClass().getResource(&quot;/fxml/InfoMenu.fxml&quot;));</span>
+<span class="nc" id="L41">        stage.setScene(new Scene(root));</span>
+<span class="nc" id="L42">        stage.show();</span>
+<span class="nc" id="L43">    }</span>
 
     @FXML
     private void onExit(ActionEvent event) throws IOException {
-<span class="nc" id="L48">        Logger.debug(&quot;Exiting application&quot;);</span>
-<span class="nc" id="L49">        Platform.exit();</span>
-<span class="nc" id="L50">    }</span>
+<span class="nc" id="L47">        Logger.debug(&quot;Exiting application&quot;);</span>
+<span class="nc" id="L48">        Platform.exit();</span>
+<span class="nc" id="L49">    }</span>
 
-    private void startGame(ActionEvent event, String loadingType) throws IOException{
-<span class="nc" id="L53">        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(&quot;/fxml/gameUI.fxml&quot;));</span>
-<span class="nc" id="L54">        Parent root = fxmlLoader.load();</span>
-<span class="nc" id="L55">        GameController controller = fxmlLoader.&lt;GameController&gt;getController();</span>
-<span class="nc" id="L56">        controller.createGame(loadingType);</span>
+    private void startGame(ActionEvent event, String sourceFile) throws IOException{
+<span class="nc" id="L52">        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(&quot;/fxml/gameUI.fxml&quot;));</span>
+<span class="nc" id="L53">        Parent root = fxmlLoader.load();</span>
+<span class="nc" id="L54">        GameController controller = fxmlLoader.&lt;GameController&gt;getController();</span>
+<span class="nc" id="L55">        controller.createGame(sourceFile);</span>
 
-<span class="nc" id="L58">        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();</span>
-<span class="nc" id="L59">        Scene scene = new Scene(root, 800, 800);</span>
-<span class="nc" id="L60">        scene.getRoot().requestFocus();</span>
-<span class="nc" id="L61">        stage.setScene(scene);</span>
-<span class="nc" id="L62">        stage.centerOnScreen();</span>
-<span class="nc" id="L63">        stage.show();</span>
-<span class="nc" id="L64">    }</span>
+<span class="nc" id="L57">        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();</span>
+<span class="nc" id="L58">        Scene scene = new Scene(root, 800, 800);</span>
+<span class="nc" id="L59">        scene.getRoot().requestFocus();</span>
+<span class="nc" id="L60">        stage.setScene(scene);</span>
+<span class="nc" id="L61">        stage.centerOnScreen();</span>
+<span class="nc" id="L62">        stage.show();</span>
+<span class="nc" id="L63">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

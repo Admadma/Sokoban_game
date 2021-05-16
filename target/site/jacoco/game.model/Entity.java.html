@@ -4,24 +4,36 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
 /**
- * Class declaring default methods of used entities.
+ * Class for Entities used in the model.
  */
 public class Entity {
 
     private final EntityType type;
 <span class="fc" id="L12">    private final ObjectProperty&lt;Position&gt; position = new SimpleObjectProperty&lt;&gt;();</span>
 
-<span class="fc" id="L14">    public Entity(EntityType type, Position position){</span>
-<span class="fc" id="L15">        this.type = type;</span>
-<span class="fc" id="L16">        this.position.setValue(position);</span>
-<span class="fc" id="L17">    }</span>
+    /**
+     * Creates a {@code Entity} object with the given parameters.
+     *
+     * @param type the type of this Entity object
+     * @param position the position of this Entity object
+     */
+<span class="fc" id="L20">    public Entity(EntityType type, Position position){</span>
+<span class="fc" id="L21">        this.type = type;</span>
+<span class="fc" id="L22">        this.position.setValue(position);</span>
+<span class="fc" id="L23">    }</span>
 
+    /**
+     * @return the position of this Entity object
+     */
     public Position getPosition() {
-<span class="fc" id="L20">        return position.get();</span>
+<span class="fc" id="L29">        return position.get();</span>
     }
 
+    /**
+     * @return a property to access the position of this Entity object
+     */
     public ObjectProperty&lt;Position&gt; positionProperty() {
-<span class="fc" id="L24">        return position;</span>
+<span class="fc" id="L36">        return position;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

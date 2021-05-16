@@ -6,6 +6,9 @@ import javafx.beans.property.ObjectProperty;
 import game.model.xmlhandler.*;
 import org.tinylog.Logger;
 
+/**
+ * Class representing the state of Entities on the board.
+ */
 public class GameModel {
 
     private boolean completed = false;
@@ -16,10 +19,15 @@ public class GameModel {
     private final Entity[] goals;
     private int numberOfMoves;
 
-    public GameModel(String loadingType){
+    /**
+     * Creates a GameModel object with entities from the sourcefile.
+     *
+     * @param sourceFile XML file containing x and y parameters for all the entities on the game board
+     */
+    public GameModel(String sourceFile){
         GameState gameState = null;
         try {
-            gameState = XmlToJava.parseXml(loadingType);
+            gameState = XmlToJava.parseXml(sourceFile);
         } catch (Exception e) {
             Logger.error("Failed to load game from XML");
             Platform.exit();
@@ -58,39 +66,76 @@ public class GameModel {
         }
     }
 
+    /**
+     * @return the position of the player Entity
+     */
     public Position getPlayerPosition(){
         return player.getPosition();
     }
 
+    /**
+     * @return a property to access the position of the player
+     */
     public ObjectProperty<Position> playerPositionProperty(){
         return player.positionProperty();
     }
+    /**
+     * @param index of the sought ball Entity
+     * @return a property to access the position of given ball Entity
+     */
     public ObjectProperty<Position> ballPositionProperty(int index) {
         return balls[index].positionProperty();
     }
 
+    /**
+     * @return the length of the walls array
+     */
     public int getWallsLength(){
         return walls.length;
     }
+    /**
+     * @return the length of the balls array
+     */
     public int getBallsLength() {
         return balls.length;
     }
+    /**
+     * @return the length of the goals array
+     */
     public int getGoalsLength() {
         return goals.length;
     }
 
+    /**
+     * @param index of the sought wall Entity
+     * @return the position of given wall Entity
+     */
     public Position wallPosition(int index){
         return walls[index].getPosition();
     }
+    /**
+     * @param index of the sought ball Entity
+     * @return the position of given ball Entity
+     */
     public Position ballPosition(int index){
         return balls[index].getPosition();
     }
+    /**
+     * @param index of the sought goal Entity
+     * @return the position of given goal Entity
+     */
     public Position goalPosition(int index) {
         return goals[index].getPosition();
     }
 
 
-
+    /**
+     * Checks if the Entity on given position can move in given direction.
+     *
+     * @param direction in which it tries to move
+     * @param oldPosition the position from where it tries to move
+     * @return returns true if the move is possible, false if not
+     */
     private boolean isValidMove(Direction direction, Position oldPosition){
         Position newPosition = oldPosition.moveTo(direction);
         for (var wall : walls){
@@ -124,6 +169,11 @@ public class GameModel {
         return true;
     }
 
+    /**
+     * Method to attempt moving the player in given direction.
+     *
+     * @param direction in which it tries to move
+     */
     public void moveThere(Direction direction){
         if(isValidMove(direction, getPlayerPosition())) {
             playerPositionProperty().setValue(getPlayerPosition().moveTo(direction));
@@ -153,6 +203,9 @@ public class GameModel {
         return false;
     }
 
+    /**
+     * Attempts to save the game using the {@code JavaToXml} class.
+     */
     public void saveGame(){
         try {
             JavaToXml.createXml(numberOfMoves, player, walls, balls, goals);
@@ -163,6 +216,9 @@ public class GameModel {
 
     }
 
+    /**
+     * Exits the game.
+     */
     public void quitGame(){
         Logger.debug("Exiting game");
         Platform.exit();

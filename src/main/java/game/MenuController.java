@@ -18,7 +18,6 @@ public class MenuController {
 
     @FXML
     private void startNewGame(ActionEvent event) throws IOException {
-        //startGame(event, "default");
         startGame(event, "/DefaultGameState.xml");
     }
 
@@ -49,11 +48,11 @@ public class MenuController {
         Platform.exit();
     }
 
-    private void startGame(ActionEvent event, String loadingType) throws IOException{
+    private void startGame(ActionEvent event, String sourceFile) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/gameUI.fxml"));
         Parent root = fxmlLoader.load();
         GameController controller = fxmlLoader.<GameController>getController();
-        controller.createGame(loadingType);
+        controller.createGame(sourceFile);
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 800, 800);

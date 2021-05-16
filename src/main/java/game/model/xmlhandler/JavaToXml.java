@@ -6,8 +6,21 @@ import jakarta.xml.bind.Marshaller;
 
 import java.io.FileOutputStream;
 
+/**
+ * Exports the GameState into XML.
+ */
 public class JavaToXml {
-
+    /**
+     * Extracts the positions of the received entities
+     * and adds them to the XML.
+     *
+     * @param moves the number of moves the player took since the start
+     * @param player the player Entity
+     * @param walls the array of wall Entities
+     * @param balls the array of ball Entities
+     * @param goals the array of goal Entities
+     * @throws Exception if failed to create the XML
+     */
     public static void createXml(int moves, Entity player, Entity[] walls, Entity[] balls, Entity[] goals) throws Exception{
         var gameState = new GameState();
 

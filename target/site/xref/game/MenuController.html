@@ -26,51 +26,50 @@
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>  
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>      @FXML
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> startNewGame(ActionEvent event) <strong class="jxr_keyword">throws</strong> IOException {
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>          <em class="jxr_comment">//startGame(event, "default");</em>
-<a class="jxr_linenumber" name="L22" href="#L22">22</a>          startGame(event, <span class="jxr_string">"/DefaultGameState.xml"</span>);
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>      }
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>  
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>      @FXML
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> onLoadGame(ActionEvent event) <strong class="jxr_keyword">throws</strong> IOException {
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>          String savedDataPath = System.getProperty(<span class="jxr_string">"user.dir"</span>) + <span class="jxr_string">"/helperFolder"</span> + <span class="jxr_string">"/SavedGameState.xml"</span>;
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>          File saveFile = <strong class="jxr_keyword">new</strong> File(savedDataPath);
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>          <strong class="jxr_keyword">if</strong>(saveFile.exists()){
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>              startGame(event, <span class="jxr_string">"/SavedGameState.xml"</span>);
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>          } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>              Logger.warn(<span class="jxr_string">"Couldn't find savefile, loading default game"</span>);
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>              startNewGame(event);
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>          }
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>      }
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>          startGame(event, <span class="jxr_string">"/DefaultGameState.xml"</span>);
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>      }
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>      @FXML
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> onLoadGame(ActionEvent event) <strong class="jxr_keyword">throws</strong> IOException {
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>          String savedDataPath = System.getProperty(<span class="jxr_string">"user.dir"</span>) + <span class="jxr_string">"/helperFolder"</span> + <span class="jxr_string">"/SavedGameState.xml"</span>;
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>          File saveFile = <strong class="jxr_keyword">new</strong> File(savedDataPath);
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>          <strong class="jxr_keyword">if</strong>(saveFile.exists()){
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>              startGame(event, <span class="jxr_string">"/SavedGameState.xml"</span>);
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>          } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>              Logger.warn(<span class="jxr_string">"Couldn't find savefile, loading default game"</span>);
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>              startNewGame(event);
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>          }
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>      }
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>  
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>  
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>      @FXML
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> onInfo(ActionEvent event) <strong class="jxr_keyword">throws</strong> IOException {
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>          Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>          Parent root = FXMLLoader.load(getClass().getResource(<span class="jxr_string">"/fxml/InfoMenu.fxml"</span>));
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>          stage.setScene(<strong class="jxr_keyword">new</strong> Scene(root));
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>          stage.show();
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>      }
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>  
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>      @FXML
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> onExit(ActionEvent event) <strong class="jxr_keyword">throws</strong> IOException {
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>          Logger.debug(<span class="jxr_string">"Exiting application"</span>);
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>          Platform.exit();
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>      }
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>  
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> startGame(ActionEvent event, String loadingType) <strong class="jxr_keyword">throws</strong> IOException{
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>          FXMLLoader fxmlLoader = <strong class="jxr_keyword">new</strong> FXMLLoader(getClass().getResource(<span class="jxr_string">"/fxml/gameUI.fxml"</span>));
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>          Parent root = fxmlLoader.load();
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>          <a name="GameController" href="../game/GameController.html#GameController">GameController</a> controller = fxmlLoader.&lt;GameController&gt;getController();
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>          controller.createGame(loadingType);
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>  
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>          Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>          Scene scene = <strong class="jxr_keyword">new</strong> Scene(root, 800, 800);
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>          scene.getRoot().requestFocus();
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>          stage.setScene(scene);
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>          stage.centerOnScreen();
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>          stage.show();
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>      }
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>  }
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>      @FXML
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> onInfo(ActionEvent event) <strong class="jxr_keyword">throws</strong> IOException {
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>          Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>          Parent root = FXMLLoader.load(getClass().getResource(<span class="jxr_string">"/fxml/InfoMenu.fxml"</span>));
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>          stage.setScene(<strong class="jxr_keyword">new</strong> Scene(root));
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>          stage.show();
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>      }
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>  
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>      @FXML
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> onExit(ActionEvent event) <strong class="jxr_keyword">throws</strong> IOException {
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>          Logger.debug(<span class="jxr_string">"Exiting application"</span>);
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>          Platform.exit();
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>      }
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> startGame(ActionEvent event, String sourceFile) <strong class="jxr_keyword">throws</strong> IOException{
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>          FXMLLoader fxmlLoader = <strong class="jxr_keyword">new</strong> FXMLLoader(getClass().getResource(<span class="jxr_string">"/fxml/gameUI.fxml"</span>));
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>          Parent root = fxmlLoader.load();
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>          <a name="GameController" href="../game/GameController.html#GameController">GameController</a> controller = fxmlLoader.&lt;GameController&gt;getController();
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>          controller.createGame(sourceFile);
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>          Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>          Scene scene = <strong class="jxr_keyword">new</strong> Scene(root, 800, 800);
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>          scene.getRoot().requestFocus();
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>          stage.setScene(scene);
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>          stage.centerOnScreen();
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>          stage.show();
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>      }
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2021. All rights reserved.</div>

@@ -24,9 +24,6 @@ public class GameController {
     @FXML
     private GridPane board;
 
-/**
- * Az initialize() helyett ez felel a pálya létrehozásáért
- */
     public void createGame(String loadingType){
         this.model = new GameModel(loadingType);
         createBoard();
@@ -121,7 +118,6 @@ public class GameController {
         whereToMove(event.getCode());
     }
 
-    //a kapott betű alapján eldönti melyik irányba kell mozdulnia
     private void whereToMove(KeyCode key){
         switch (key) {
             case UP:
