@@ -1,4 +1,4 @@
 /**
- * Classes responsible for launching the game and handling user input.
+ * Classes responsible for launching the game.
  */
 package game;

@@ -1,4 +1,4 @@
-package game;
+package game.controllers;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -35,7 +35,7 @@ public class MenuController {
     @FXML
     private void onLoadGame(ActionEvent event) throws IOException {
         String sourceFile = "/SavedGameState.xml";
-        String savedDataPath = System.getProperty("user.dir") + "/helperFolder" + sourceFile;
+        String savedDataPath = System.getProperty("user.dir") + "/.helperFolder" + sourceFile;
         File saveFile = new File(savedDataPath);
         if(saveFile.exists()){
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/gameUI.fxml"));
@@ -84,3 +84,4 @@ public class MenuController {
         stage.show();
     }
 }
+

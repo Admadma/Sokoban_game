@@ -1,4 +1,4 @@
-package game;
+package game.controllers;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -44,3 +44,4 @@ public class VictoryScreenController {
 
 
 }
+

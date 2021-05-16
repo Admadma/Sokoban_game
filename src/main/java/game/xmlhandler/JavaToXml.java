@@ -1,4 +1,4 @@
-package game.model.xmlhandler;
+package game.xmlhandler;
 
 import game.model.Entity;
 import jakarta.xml.bind.JAXBContext;
@@ -23,8 +23,7 @@ public class JavaToXml {
      * @throws Exception if failed to create the XML
      */
     public static void createXml(int moves, String playerName, Entity player, Entity[] walls, Entity[] balls, Entity[] goals) throws Exception{
-        var gameState = new GameState();
-
+        var gameState = new game.xmlhandler.GameState();
         gameState.setNumberOfMoves(moves);
         gameState.setPlayerName(playerName);
 
@@ -71,7 +70,8 @@ public class JavaToXml {
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
 
-        String savedDataPath = System.getProperty("user.dir") + "/helperFolder" + "/SavedGameState.xml";
+        String savedDataPath = System.getProperty("user.dir") + "/.helperFolder" + "/SavedGameState.xml";
         marshaller.marshal(gameState, new FileOutputStream(savedDataPath));
     }
 }
+

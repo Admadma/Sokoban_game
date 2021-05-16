@@ -1,4 +1,4 @@
-package game.model.xmlhandler;
+package game.xmlhandler;
 
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.Unmarshaller;
@@ -18,24 +18,24 @@ public class XmlToJava {
      * @return the GameState object created from the XML file
      * @throws Exception if an error occured while trying to read from xml
      */
-    public static GameState parseXml(String sourceFile) throws Exception {
-        JAXBContext jaxbContext = JAXBContext.newInstance(GameState.class);
+    public static game.xmlhandler.GameState parseXml(String sourceFile) throws Exception {
+        JAXBContext jaxbContext = JAXBContext.newInstance(game.xmlhandler.GameState.class);
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 
         if (sourceFile.equals("/SavedGameState.xml")) {
             try {
-            String savedDataPath = System.getProperty("user.dir") + "/helperFolder" + sourceFile;
-            File saveFile = new File(savedDataPath);
-            GameState gameState = (GameState) unmarshaller.unmarshal(saveFile);
-            return gameState;
+                String savedDataPath = System.getProperty("user.dir") + "/.helperFolder" + sourceFile;
+                File saveFile = new File(savedDataPath);
+                game.xmlhandler.GameState gameState = (game.xmlhandler.GameState) unmarshaller.unmarshal(saveFile);
+                return gameState;
             } catch (Exception e){
                 throw new FileNotFoundException();
             }
 
         } else if (sourceFile.equals("/DefaultGameState.xml") || sourceFile.equals("/TestGameState.xml")) {
             try {
-                InputStream is = XmlToJava.class.getResourceAsStream(sourceFile);
-                GameState gameState = (GameState) unmarshaller.unmarshal(is);
+                InputStream is = game.xmlhandler.XmlToJava.class.getResourceAsStream(sourceFile);
+                game.xmlhandler.GameState gameState = (GameState) unmarshaller.unmarshal(is);
                 return gameState;
             } catch (Exception e) {
                 throw new FileNotFoundException();
@@ -45,3 +45,4 @@ public class XmlToJava {
         }
     }
 }
+

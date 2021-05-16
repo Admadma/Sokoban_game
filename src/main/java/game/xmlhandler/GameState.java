@@ -1,4 +1,4 @@
-package game.model.xmlhandler;
+package game.xmlhandler;
 
 import jakarta.xml.bind.annotation.*;
 import lombok.Data;
@@ -47,3 +47,4 @@ public class GameState {
     @XmlElement(name = "y")
     private int[] goalYValues;
 }
+

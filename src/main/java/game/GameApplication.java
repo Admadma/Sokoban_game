@@ -20,7 +20,7 @@ public class GameApplication extends Application {
      */
     @Override
     public void start(Stage stage) throws IOException {
-        String helperFolder = System.getProperty("user.dir") + "/helperFolder";
+        String helperFolder = System.getProperty("user.dir") + "/.helperFolder";
         File file = new File(helperFolder);
         if(!file.exists()){
             if(file.mkdir()){

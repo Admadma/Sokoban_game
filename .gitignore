@@ -183,4 +183,4 @@ nbdist/
 
 # End of https://www.toptal.com/developers/gitignore/api/maven,intellij+all,netbeans,eclipse
 
-helperFolder/
+.helperFolder/

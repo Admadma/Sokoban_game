@@ -1,4 +1,4 @@
-package game;
+package game.controllers;
 
 import game.model.*;
 import game.model.GameModel;
@@ -183,3 +183,4 @@ public class GameController {
 
 
 }
+

@@ -1,4 +1,4 @@
-package game;
+package game.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,3 +20,4 @@ public class InfoMenuController {
         stage.show();
     }
 }
+

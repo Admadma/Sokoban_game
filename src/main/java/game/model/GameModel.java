@@ -3,7 +3,8 @@ package game.model;
 import javafx.application.Platform;
 import javafx.beans.property.*;
 
-import game.model.xmlhandler.*;
+//import game.model.xmlhandler.*;
+import game.xmlhandler.*;
 import org.tinylog.Logger;
 
 /**

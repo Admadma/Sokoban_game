@@ -1,4 +1,4 @@
-package game;
+package game.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,6 +25,7 @@ public class SelectNameController {
 
     @FXML
     private void initialize() {
+        System.out.println("------");
         nameField.setText(System.getProperty("user.name"));
     }
 
@@ -45,3 +46,4 @@ public class SelectNameController {
         stage.show();
     }
 }
+

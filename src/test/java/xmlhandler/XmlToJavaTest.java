@@ -1,7 +1,7 @@
-package model.xmlhandler;
+package xmlhandler;
 
-import game.model.xmlhandler.XmlToJava;
-import game.model.xmlhandler.GameState;
+import game.xmlhandler.XmlToJava;
+import game.xmlhandler.GameState;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class XmlToJavaTest {
     @Test
     void testParseXml(){
-        String savedDataPath = System.getProperty("user.dir") + "/helperFolder" + "/SavedGameState.xml";
+        String savedDataPath = System.getProperty("user.dir") + "/.helperFolder" + "/SavedGameState.xml";
         File saveFile = new File(savedDataPath);
         if(!saveFile.exists()) {
             assertThrows(FileNotFoundException.class, () -> {
