@@ -26,7 +26,7 @@
     <junit.jupiter.version>5.7.1</junit.jupiter.version>
     <jacoco.version>0.8.7</jacoco.version>
     <surefire.version>3.0.0-M5</surefire.version>
-    <output.directory>D:/gameclasses</output.directory>
+    <!--<output.directory>D:/gameclasses</output.directory>-->
 </properties>
 <dependencies>
     <dependency>
@@ -66,9 +66,23 @@
         <version>3.0.0</version>
         <scope>runtime</scope>
     </dependency>
+
+    <dependency>
+        <groupId>org.tinylog</groupId>
+        <artifactId>tinylog-api</artifactId>
+        <version>2.2.1</version>
+        <scope>compile</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.tinylog</groupId>
+        <artifactId>tinylog-impl</artifactId>
+        <version>2.2.1</version>
+        <scope>runtime</scope>
+    </dependency>
+
 </dependencies>
 <build>
-    <outputDirectory>${output.directory}</outputDirectory>
+    <!-- <outputDirectory>${output.directory}</outputDirectory>-->
     <plugins>
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -149,6 +163,29 @@
                 </dependency>
             </dependencies>
         </plugin>
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>3.2.4</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>shade</goal>
+                    </goals>
+                    <configuration>
+                        <transformers>
+                            <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                <mainClass>${exec.mainClass}</mainClass>
+                            </transformer>
+                        </transformers>
+                        <createDependencyReducedPom>false</createDependencyReducedPom>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+
+
     </plugins>
 </build>
 <reporting>
@@ -175,7 +212,9 @@
             <artifactId>maven-checkstyle-plugin</artifactId>
             <version>3.1.2</version>
             <configuration>
-                <configLocation>${output.directory}/checkstyle.xml</configLocation>
+                <!--<configLocation>${output.directory}/checkstyle.xml</configLocation>-->
+                <configLocation>src/main/resources/checkstyle.xml</configLocation>
+                <!--<configLocation>target/checkstyle.xml</configLocation>-->
             </configuration>
         </plugin>
         <plugin>

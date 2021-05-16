@@ -61,9 +61,6 @@ public class GameModel {
     public Position getPlayerPosition(){
         return player.getPosition();
     }
-    public Position getBallPosition(int index){
-        return balls[index].getPosition();
-    }
 
     public ObjectProperty<Position> playerPositionProperty(){
         return player.positionProperty();
@@ -82,10 +79,6 @@ public class GameModel {
         return goals.length;
     }
 
-    public Entity[] getWalls() {
-        return walls;
-    }
-
     public Position wallPosition(int index){
         return walls[index].getPosition();
     }
@@ -98,7 +91,7 @@ public class GameModel {
 
 
 
-    public boolean isValidMove(Direction direction, Position oldPosition){
+    private boolean isValidMove(Direction direction, Position oldPosition){
         Position newPosition = oldPosition.moveTo(direction);
         for (var wall : walls){
             if(wall.getPosition().equals(newPosition)){
@@ -127,7 +120,7 @@ public class GameModel {
                 return false;
             }
         }
-        ballPositionProperty(index).setValue(getBallPosition(index).moveTo(direction));
+        ballPositionProperty(index).setValue(ballPosition(index).moveTo(direction));
         return true;
     }
 

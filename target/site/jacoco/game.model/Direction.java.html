@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Direction.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">game_project</a> &gt; <a href="index.source.html" class="el_package">game.model</a> &gt; <span class="el_source">Direction.java</span></div><h1>Direction.java</h1><pre class="source lang-java linenums">package game.model;
+
+<span class="fc" id="L3">public enum Direction {</span>
+<span class="fc" id="L4">    UP(-1, 0),</span>
+<span class="fc" id="L5">    RIGHT(0,1),</span>
+<span class="fc" id="L6">    DOWN(1,0),</span>
+<span class="fc" id="L7">    LEFT(0,-1);</span>
+
+
+    private final int rowChange;
+    private final int colChange;
+
+<span class="fc" id="L13">    Direction(int rowChange, int colChange){</span>
+<span class="fc" id="L14">        this.rowChange = rowChange;</span>
+<span class="fc" id="L15">        this.colChange = colChange;</span>
+<span class="fc" id="L16">    }</span>
+
+    public int getRowChange() {
+<span class="fc" id="L19">        return rowChange;</span>
+    }
+
+    public int getColChange() {
+<span class="fc" id="L23">        return colChange;</span>
+    }
+
+    /*
+//erre nem biztos, hogy lesz szükség
+    public static Direction of(int rowChange, int colChange) {  // of(1, -1) visszaadja az adott irányhoz tartozó nevet (ez DOWN_LEFT) (main method példa)        hogyha olyan irányt kapunk ami nincs a felsorolt 4 között
+        for (var direction : values()) {
+            if (direction.rowChange == rowChange &amp;&amp; direction.colChange == colChange) {
+                return direction;
+            }
+        }
+        throw new IllegalArgumentException();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(of(0, -1));
+        //System.out.println(of(1, -2));
+    }
+    */
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

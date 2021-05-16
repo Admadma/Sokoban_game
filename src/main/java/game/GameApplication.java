@@ -22,7 +22,7 @@ public class GameApplication extends Application {
                 Logger.warn("Failed to create folder");
             }
         } else {
-            Logger.debug("Folder already exists");
+            Logger.debug("Helper folder already exists");
         }
 
         Logger.info("Starting application");

@@ -16,10 +16,6 @@ public class Entity {
         this.position.setValue(position);
     }
 
-    public EntityType getType() {
-        return type;
-    }
-
     public Position getPosition() {
         return position.get();
     }

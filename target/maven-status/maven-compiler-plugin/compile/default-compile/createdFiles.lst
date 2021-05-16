@@ -6,9 +6,9 @@ game/model/xmlhandler/XmlToJava.class
 game/model/Direction.class
 game/GameController$1.class
 game/GameApplication.class
-game/model/Player.class
 game/model/xmlhandler/JavaToXml.class
+game/MenuController.class
 game/model/xmlhandler/GameState.class
-game/model/xmlhandler/Entities.class
 game/GameController.class
+game/InfoMenuController.class
 game/model/Entity.class

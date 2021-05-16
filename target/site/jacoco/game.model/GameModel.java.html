@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GameModel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">game_project</a> &gt; <a href="index.source.html" class="el_package">game.model</a> &gt; <span class="el_source">GameModel.java</span></div><h1>GameModel.java</h1><pre class="source lang-java linenums">package game.model;
+
+import javafx.application.Platform;
+import javafx.beans.property.ObjectProperty;
+
+import game.model.xmlhandler.*;
+import org.tinylog.Logger;
+
+public class GameModel {
+
+<span class="fc" id="L11">    private boolean completed = false;</span>
+
+    private final Entity player;
+    private final Entity[] walls;
+    private final Entity[] balls;
+    private final Entity[] goals;
+    private int numberOfMoves;
+
+<span class="fc" id="L19">    public GameModel(String loadingType){</span>
+<span class="fc" id="L20">        GameState gameState = null;</span>
+        try {
+<span class="fc" id="L22">            gameState = XmlToJava.parseXml(loadingType);</span>
+<span class="nc" id="L23">        } catch (Exception e) {</span>
+<span class="nc" id="L24">            Logger.error(&quot;Failed to load game from XML&quot;);</span>
+<span class="nc" id="L25">            Platform.exit();</span>
+<span class="fc" id="L26">        }</span>
+<span class="fc" id="L27">        int[][] wallPositions = new int[gameState.getWallXValues().length][2];</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">        for(int i = 0; i &lt; gameState.getWallXValues().length; i++){</span>
+<span class="fc" id="L29">            wallPositions[i][1] = gameState.getWallXValues()[i];</span>
+<span class="fc" id="L30">            wallPositions[i][0] = gameState.getWallYValues()[i];</span>
+        }
+<span class="fc" id="L32">        this.walls = new Entity[wallPositions.length];</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        for(int i = 0; i &lt; wallPositions.length; i++){</span>
+<span class="fc" id="L34">            this.walls[i] = new Entity(EntityType.Wall, new Position(wallPositions[i][0], wallPositions[i][1]));</span>
+        }
+<span class="fc" id="L36">        this.numberOfMoves = gameState.getNumberOfMoves();</span>
+
+<span class="fc" id="L38">        this.player = new Entity(EntityType.Player, new Position(gameState.getPlayerYValues()[0],gameState.getPlayerXValues()[0]));</span>
+
+<span class="fc" id="L40">        int[][] ballPositions = new int[gameState.getBallXValues().length][2];</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        for(int i = 0; i &lt; gameState.getBallXValues().length; i++){</span>
+<span class="fc" id="L42">            ballPositions[i][1] = gameState.getBallXValues()[i];</span>
+<span class="fc" id="L43">            ballPositions[i][0] = gameState.getBallYValues()[i];</span>
+        }
+<span class="fc" id="L45">        this.balls = new Entity[ballPositions.length];</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        for(int i = 0; i &lt; ballPositions.length; i++){</span>
+<span class="fc" id="L47">            this.balls[i] = new Entity(EntityType.Ball, new Position(ballPositions[i][0], ballPositions[i][1]));</span>
+        }
+
+<span class="fc" id="L50">        int[][] goalPositions = new int[gameState.getGoalXValues().length][2];</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        for(int i = 0; i &lt; gameState.getGoalXValues().length; i++){</span>
+<span class="fc" id="L52">            goalPositions[i][1] = gameState.getGoalXValues()[i];</span>
+<span class="fc" id="L53">            goalPositions[i][0] = gameState.getGoalYValues()[i];</span>
+        }
+<span class="fc" id="L55">        this.goals = new Entity[goalPositions.length];</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        for(int i = 0; i &lt; goalPositions.length; i++){</span>
+<span class="fc" id="L57">            this.goals[i] = new Entity(EntityType.Goal, new Position(goalPositions[i][0], goalPositions[i][1]));</span>
+        }
+<span class="fc" id="L59">    }</span>
+
+    public Position getPlayerPosition(){
+<span class="fc" id="L62">        return player.getPosition();</span>
+    }
+
+    public ObjectProperty&lt;Position&gt; playerPositionProperty(){
+<span class="fc" id="L66">        return player.positionProperty();</span>
+    }
+    public ObjectProperty&lt;Position&gt; ballPositionProperty(int index) {
+<span class="fc" id="L69">        return balls[index].positionProperty();</span>
+    }
+
+    public int getWallsLength(){
+<span class="fc" id="L73">        return walls.length;</span>
+    }
+    public int getBallsLength() {
+<span class="fc" id="L76">        return balls.length;</span>
+    }
+    public int getGoalsLength() {
+<span class="fc" id="L79">        return goals.length;</span>
+    }
+
+    public Position wallPosition(int index){
+<span class="fc" id="L83">        return walls[index].getPosition();</span>
+    }
+    public Position ballPosition(int index){
+<span class="fc" id="L86">        return balls[index].getPosition();</span>
+    }
+    public Position goalPosition(int index) {
+<span class="fc" id="L89">        return goals[index].getPosition();</span>
+    }
+
+
+
+    private boolean isValidMove(Direction direction, Position oldPosition){
+<span class="fc" id="L95">        Position newPosition = oldPosition.moveTo(direction);</span>
+<span class="fc bfc" id="L96" title="All 2 branches covered.">        for (var wall : walls){</span>
+<span class="fc bfc" id="L97" title="All 2 branches covered.">            if(wall.getPosition().equals(newPosition)){</span>
+<span class="fc" id="L98">                return false;</span>
+            }
+        }
+<span class="fc bfc" id="L101" title="All 2 branches covered.">        for (int i = 0; i &lt; balls.length; i++){</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">            if(balls[i].getPosition().equals(newPosition)){</span>
+<span class="fc bfc" id="L103" title="All 2 branches covered.">                if(!canPushBall(direction, i)){</span>
+<span class="fc" id="L104">                    return false;</span>
+                }
+            }
+        }
+<span class="fc" id="L108">        return true;</span>
+    }
+
+    private boolean canPushBall(Direction direction, int index){
+<span class="fc" id="L112">        var newBallPosition = balls[index].getPosition().moveTo(direction);</span>
+<span class="fc bfc" id="L113" title="All 2 branches covered.">        for (var wall : walls){</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">            if(wall.getPosition().equals(newBallPosition)){</span>
+<span class="fc" id="L115">                return false;</span>
+            }
+        }
+<span class="fc bfc" id="L118" title="All 2 branches covered.">        for (var ball : balls){</span>
+<span class="fc bfc" id="L119" title="All 2 branches covered.">            if(ball.getPosition().equals(newBallPosition)){</span>
+<span class="fc" id="L120">                return false;</span>
+            }
+        }
+<span class="fc" id="L123">        ballPositionProperty(index).setValue(ballPosition(index).moveTo(direction));</span>
+<span class="fc" id="L124">        return true;</span>
+    }
+
+    public void moveThere(Direction direction){
+<span class="fc bfc" id="L128" title="All 2 branches covered.">        if(isValidMove(direction, getPlayerPosition())) {</span>
+<span class="fc" id="L129">            playerPositionProperty().setValue(getPlayerPosition().moveTo(direction));</span>
+<span class="fc" id="L130">            numberOfMoves++;</span>
+<span class="fc" id="L131">            checkGoals();</span>
+        } else {
+<span class="fc" id="L133">            Logger.warn(&quot;Can't move there&quot;);</span>
+        }
+<span class="fc" id="L135">    }</span>
+
+    private void checkGoals(){
+<span class="pc bpc" id="L138" title="1 of 2 branches missed.">        if (!completed) {</span>
+<span class="fc bfc" id="L139" title="All 2 branches covered.">            for (var goal : goals) {</span>
+<span class="fc bfc" id="L140" title="All 2 branches covered.">                if (!ballOnIt(goal))</span>
+<span class="fc" id="L141">                    return;</span>
+            }
+<span class="fc" id="L143">            completed = true;</span>
+<span class="fc" id="L144">            Logger.info(&quot;Game completed in {} moves.&quot;, numberOfMoves);</span>
+        }
+<span class="fc" id="L146">    }</span>
+
+    private boolean ballOnIt(Entity goal){
+<span class="fc bfc" id="L149" title="All 2 branches covered.">        for(var ball : balls){</span>
+<span class="fc bfc" id="L150" title="All 2 branches covered.">            if(goal.getPosition().equals(ball.getPosition()))</span>
+<span class="fc" id="L151">                return true;</span>
+        }
+<span class="fc" id="L153">        return false;</span>
+    }
+
+    public void saveGame(){
+        try {
+<span class="fc" id="L158">            JavaToXml.createXml(numberOfMoves, player, walls, balls, goals);</span>
+<span class="fc" id="L159">            Logger.info(&quot;Game saved&quot;);</span>
+<span class="nc" id="L160">        } catch (Exception e) {</span>
+<span class="nc" id="L161">            Logger.warn(&quot;Failed to save game&quot;);</span>
+<span class="fc" id="L162">        }</span>
+
+<span class="fc" id="L164">    }</span>
+
+    public void quitGame(){
+<span class="fc" id="L167">        Logger.debug(&quot;Exiting game&quot;);</span>
+<span class="fc" id="L168">        Platform.exit();</span>
+<span class="fc" id="L169">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

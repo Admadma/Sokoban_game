@@ -32,8 +32,8 @@ public class GameController {
         createBoard();
         createPlayer();
         createWalls();
-        createBalls();
         createGoals();
+        createBalls();
         board.setOnKeyPressed(this::handleKeyPress);
         Logger.info("Created the game");
     }
@@ -58,6 +58,10 @@ public class GameController {
         model.playerPositionProperty().addListener(this::entityPositionchange);
         var player = createPlayerHelp();
         getTile(model.getPlayerPosition()).getChildren().add(player);
+        System.out.println(model.playerPositionProperty());
+        System.out.println(model.playerPositionProperty().getClass());
+        System.out.println(model.playerPositionProperty().get());
+        System.out.println(model.playerPositionProperty());
 
     }
 
@@ -157,8 +161,8 @@ public class GameController {
     }
 
 
-    private void entityPositionchange(ObservableValue<? extends Position> observable, Position oldPosition, Position newPosition){      //TODO: egyelőre sak a játékos pozícióját figyeljük, később lehet valahogy össze kell vonni a golyó figyelésével (mert nem éri meg külön külön figyelni)
-        Logger.debug("Moving entity from: ({}, {}) to ({}, {})", oldPosition.row(), oldPosition.col(), newPosition.row(), newPosition.col());                                                                     //TODO: problémát okozhat-e az hogy it csak golyó és square-ek voltak míg az enyémben lesz fal, player golyó,.. több különböző      //square(tile) elemen állhat player vagy golyó is
+    private void entityPositionchange(ObservableValue<? extends Position> observable, Position oldPosition, Position newPosition){
+        Logger.debug("Moving entity from: ({}, {}) to ({}, {})", oldPosition.row(), oldPosition.col(), newPosition.row(), newPosition.col());
         StackPane oldTile = getTile(oldPosition);
         StackPane newTile = getTile(newPosition);
         newTile.getChildren().add(oldTile.getChildren().get(oldTile.getChildren().size()-1));

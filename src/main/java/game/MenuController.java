@@ -18,7 +18,8 @@ public class MenuController {
 
     @FXML
     private void startNewGame(ActionEvent event) throws IOException {
-        startGame(event, "default");
+        //startGame(event, "default");
+        startGame(event, "/DefaultGameState.xml");
     }
 
     @FXML
@@ -26,7 +27,7 @@ public class MenuController {
         String savedDataPath = System.getProperty("user.dir") + "/helperFolder" + "/SavedGameState.xml";
         File saveFile = new File(savedDataPath);
         if(saveFile.exists()){
-            startGame(event, "save");
+            startGame(event, "/SavedGameState.xml");
         } else {
             Logger.warn("Couldn't find savefile, loading default game");
             startNewGame(event);
