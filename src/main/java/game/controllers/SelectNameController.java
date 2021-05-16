@@ -25,7 +25,6 @@ public class SelectNameController {
 
     @FXML
     private void initialize() {
-        System.out.println("------");
         nameField.setText(System.getProperty("user.name"));
     }
 
