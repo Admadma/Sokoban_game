@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <gameState>
-<numberOfMoves>0</numberOfMoves>
+    <numberOfMoves>0</numberOfMoves>
+    <playerName>testPlayer</playerName>
 <playerXValues>
     <x>1</x>
 </playerXValues>

@@ -4,7 +4,10 @@ import game.model.*;
 import game.model.GameModel;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Circle;
@@ -13,6 +16,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Rectangle;
 
+import javafx.stage.Stage;
 import org.tinylog.Logger;
 
 import static javafx.scene.paint.Color.*;
@@ -21,12 +25,15 @@ public class GameController {
 
     private GameModel model;
     private String PlayerName = "";
+    private Stage stage;
 
     @FXML
     private GridPane board;
 
-    public void createGame(String loadingType, String playerName){
+    public void createGame(String loadingType, String playerName, Stage stage){
+        this.stage = stage;
         this.model = new GameModel(loadingType, playerName);
+        model.isGameCompleteProperty().addListener(this::isGameComplete);
         createBoard();
         createPlayer();
         createWalls();
@@ -43,7 +50,6 @@ public class GameController {
                 board.add(tile, i, j);
             }
         }
-
     }
 
     private StackPane createTile(){
@@ -53,14 +59,9 @@ public class GameController {
     }
 
     private void createPlayer() {
-        model.playerPositionProperty().addListener(this::entityPositionchange);
+        model.playerPositionProperty().addListener(this::entityPositionChange);
         var player = createPlayerHelp();
         getTile(model.getPlayerPosition()).getChildren().add(player);
-        System.out.println(model.playerPositionProperty());
-        System.out.println(model.playerPositionProperty().getClass());
-        System.out.println(model.playerPositionProperty().get());
-        System.out.println(model.playerPositionProperty());
-
     }
 
     private Circle createPlayerHelp(){
@@ -86,7 +87,7 @@ public class GameController {
 
     private void createBalls(){
         for (int i = 0; i < model.getBallsLength(); i++){
-            model.ballPositionProperty(i).addListener(this::entityPositionchange);
+            model.ballPositionProperty(i).addListener(this::entityPositionChange);
             var ball = createBall();
             getTile(model.ballPosition(i)).getChildren().add(ball);
         }
@@ -142,10 +143,8 @@ public class GameController {
             default:
                 Logger.warn("Invalid key");
                 break;
-
         }
     }
-
 
     private StackPane getTile(Position position){
         for(var child : board.getChildren()){
@@ -154,15 +153,31 @@ public class GameController {
             }
         }
         throw new AssertionError();
-
     }
 
-
-    private void entityPositionchange(ObservableValue<? extends Position> observable, Position oldPosition, Position newPosition){
+    private void entityPositionChange(ObservableValue<? extends Position> observable, Position oldPosition, Position newPosition){
         Logger.debug("Moving entity from: ({}, {}) to ({}, {})", oldPosition.row(), oldPosition.col(), newPosition.row(), newPosition.col());
         StackPane oldTile = getTile(oldPosition);
         StackPane newTile = getTile(newPosition);
         newTile.getChildren().add(oldTile.getChildren().get(oldTile.getChildren().size()-1));
+    }
+
+    private void isGameComplete(ObservableValue<? extends Boolean> observable, boolean oldPosition, boolean newPosition){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/victoryScreenUI.fxml"));
+            Parent root = fxmlLoader.load();
+            VictoryScreenController controller = fxmlLoader.<VictoryScreenController>getController();
+            controller.setPlayerName(model.getPlayerName());
+            controller.setNumberOfMoves(model.getNumberOfMoves());
+
+            Scene scene = new Scene(root);
+            scene.getRoot().requestFocus();
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+        } catch (Exception e){
+            Logger.error(e.getCause());
+        }
     }
 
 

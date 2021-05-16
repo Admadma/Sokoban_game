@@ -11,6 +11,13 @@ import java.io.File;
 import java.io.IOException;
 
 public class GameApplication extends Application {
+    /**
+     * Checks if the helperFolder already exists in the current directory and creates it.
+     * Creates the stage in which the application will run.
+     *
+     * @param stage the Stage object
+     * @throws IOException if failed to load file
+     */
     @Override
     public void start(Stage stage) throws IOException {
         String helperFolder = System.getProperty("user.dir") + "/helperFolder";

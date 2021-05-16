@@ -34,9 +34,10 @@ public class SelectNameController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/gameUI.fxml"));
         Parent root = fxmlLoader.load();
         GameController controller = fxmlLoader.<GameController>getController();
-        controller.createGame(sourceFile, nameField.getText());
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        controller.createGame(sourceFile, nameField.getText(), stage);
+
         Scene scene = new Scene(root, 800, 800);
         scene.getRoot().requestFocus();
         stage.setScene(scene);

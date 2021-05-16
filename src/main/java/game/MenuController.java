@@ -18,7 +18,6 @@ public class MenuController {
 
     @FXML
     private void onStartNewGame(ActionEvent event) throws IOException {
-        //startGame(event, "/DefaultGameState.xml");
         String sourceFile = "/DefaultGameState.xml";
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/selectName.fxml"));
         Parent root = fxmlLoader.load();
@@ -39,13 +38,12 @@ public class MenuController {
         String savedDataPath = System.getProperty("user.dir") + "/helperFolder" + sourceFile;
         File saveFile = new File(savedDataPath);
         if(saveFile.exists()){
-            //startGame(event, sourceFile);
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/gameUI.fxml"));
             Parent root = fxmlLoader.load();
             GameController controller = fxmlLoader.<GameController>getController();
-            controller.createGame(sourceFile, "");
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            controller.createGame(sourceFile, "", stage);
             Scene scene = new Scene(root, 800, 800);
             scene.getRoot().requestFocus();
             stage.setScene(scene);
@@ -84,19 +82,5 @@ public class MenuController {
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();
-        /*
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/gameUI.fxml"));
-        Parent root = fxmlLoader.load();
-        GameController controller = fxmlLoader.<GameController>getController();
-        controller.createGame(sourceFile);
-
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 800, 800);
-        scene.getRoot().requestFocus();
-        stage.setScene(scene);
-        stage.centerOnScreen();
-        stage.show();
-
-         */
     }
 }

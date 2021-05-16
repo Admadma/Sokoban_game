@@ -11,10 +11,23 @@ public class GameModelTest {
     GameModel testModel = new GameModel("/TestGameState.xml", "testPlayer");
 
     @Test
+    void testGetPlayerName(){
+        assertEquals("testPlayer", testModel.getPlayerName());
+    }
+    @Test
+    void testGetNumberOfMoves(){
+        assertEquals(0, testModel.getNumberOfMoves());
+    }
+    @Test
     void testGetPlayerPosition(){
         assertEquals(new Position(1,1), testModel.getPlayerPosition());
     }
 
+    @Test
+    void testIsGameCompleteProperty(){
+        testModel.isGameCompleteProperty().setValue(true);
+        assertEquals(true, testModel.isGameCompleteProperty().get());
+    }
     @Test
     void testPlayerPositionProperty(){
         testModel.playerPositionProperty().setValue(testModel.getPlayerPosition().moveTo(Direction.DOWN));

@@ -1,7 +1,7 @@
 package game.model;
 
 import javafx.application.Platform;
-import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.*;
 
 import game.model.xmlhandler.*;
 import org.tinylog.Logger;
@@ -12,6 +12,7 @@ import org.tinylog.Logger;
 public class GameModel {
 
     private boolean completed = false;
+    private BooleanProperty isGameComplete = new SimpleBooleanProperty(false);
 
     private final Entity player;
     private final Entity[] walls;
@@ -41,6 +42,11 @@ public class GameModel {
         } else {
             this.playerName = playerName;
         }
+
+        this.numberOfMoves = gameState.getNumberOfMoves();
+
+        this.player = new Entity(EntityType.Player, new Position(gameState.getPlayerYValues()[0],gameState.getPlayerXValues()[0]));
+
         int[][] wallPositions = new int[gameState.getWallXValues().length][2];
         for(int i = 0; i < gameState.getWallXValues().length; i++){
             wallPositions[i][1] = gameState.getWallXValues()[i];
@@ -50,9 +56,6 @@ public class GameModel {
         for(int i = 0; i < wallPositions.length; i++){
             this.walls[i] = new Entity(EntityType.Wall, new Position(wallPositions[i][0], wallPositions[i][1]));
         }
-        this.numberOfMoves = gameState.getNumberOfMoves();
-
-        this.player = new Entity(EntityType.Player, new Position(gameState.getPlayerYValues()[0],gameState.getPlayerXValues()[0]));
 
         int[][] ballPositions = new int[gameState.getBallXValues().length][2];
         for(int i = 0; i < gameState.getBallXValues().length; i++){
@@ -76,6 +79,19 @@ public class GameModel {
     }
 
     /**
+     * @return the name of the player, which was either entered at start or loaded from savefile
+     */
+    public String getPlayerName(){
+        return playerName;
+    }
+
+    /**
+     * @return the number of valid moves the player took this game
+     */
+    public int getNumberOfMoves(){
+        return numberOfMoves;
+    }
+    /**
      * @return the position of the player Entity
      */
     public Position getPlayerPosition(){
@@ -83,8 +99,17 @@ public class GameModel {
     }
 
     /**
+     * @return a property that tells whether the game is completed or not
+     */
+    public BooleanProperty isGameCompleteProperty() {
+        return isGameComplete;
+    }
+
+    /**
      * @return a property to access the position of the player
      */
+
+
     public ObjectProperty<Position> playerPositionProperty(){
         return player.positionProperty();
     }
@@ -192,7 +217,17 @@ public class GameModel {
             Logger.warn("Can't move there");
         }
     }
-
+    private void checkGoals(){
+        if (!isGameComplete.get()) {
+            for (var goal : goals) {
+                if (!ballOnIt(goal))
+                    return;
+            }
+            isGameComplete.set(true);
+            Logger.info("{} completed the game in {} moves.", playerName, numberOfMoves);
+        }
+    }
+/*
     private void checkGoals(){
         if (!completed) {
             for (var goal : goals) {
@@ -202,7 +237,7 @@ public class GameModel {
             completed = true;
             Logger.info("{} completed the game in {} moves.", playerName, numberOfMoves);
         }
-    }
+    }*/
 
     private boolean ballOnIt(Entity goal){
         for(var ball : balls){
