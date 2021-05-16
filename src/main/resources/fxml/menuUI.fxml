@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -10,6 +11,9 @@
          <font>
             <Font size="48.0" />
          </font>
+         <VBox.margin>
+            <Insets bottom="40.0" />
+         </VBox.margin>
       </Label>
       <Button mnemonicParsing="false" onAction="#onStartNewGame" prefHeight="40.0" prefWidth="150.0" text="Start New Game" />
       <Button mnemonicParsing="false" onAction="#onLoadGame" prefHeight="40.0" prefWidth="150.0" text="Load Saved Game" />

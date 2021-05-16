@@ -7,7 +7,7 @@
 <artifactId>game_project</artifactId>
 <version>1.0</version>
 <packaging>jar</packaging>
-<description></description>
+<description>Sokoban game implemented in JavaFX</description>
 <developers>
     <developer>
         <name>Aranyi Ádám</name>
@@ -26,7 +26,6 @@
     <junit.jupiter.version>5.7.1</junit.jupiter.version>
     <jacoco.version>0.8.7</jacoco.version>
     <surefire.version>3.0.0-M5</surefire.version>
-    <!--<output.directory>D:/gameclasses</output.directory>-->
 </properties>
 <dependencies>
     <dependency>
@@ -82,7 +81,6 @@
 
 </dependencies>
 <build>
-    <!-- <outputDirectory>${output.directory}</outputDirectory>-->
     <plugins>
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -212,9 +210,7 @@
             <artifactId>maven-checkstyle-plugin</artifactId>
             <version>3.1.2</version>
             <configuration>
-                <!--<configLocation>${output.directory}/checkstyle.xml</configLocation>-->
                 <configLocation>src/main/resources/checkstyle.xml</configLocation>
-                <!--<configLocation>target/checkstyle.xml</configLocation>-->
             </configuration>
         </plugin>
         <plugin>

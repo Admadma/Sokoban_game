@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameModelTest {
-    GameModel testModel = new GameModel("/TestGameState.xml");
+    GameModel testModel = new GameModel("/TestGameState.xml", "testPlayer");
 
     @Test
     void testGetPlayerPosition(){

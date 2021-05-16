@@ -14,8 +14,9 @@ public class InfoMenuController {
     @FXML
     private void onBackToMenu(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/menu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/menuUI.fxml"));
         stage.setScene(new Scene(root));
+        stage.centerOnScreen();
         stage.show();
     }
 }

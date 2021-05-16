@@ -26,11 +26,12 @@ public class GameApplication extends Application {
         }
 
         Logger.info("Starting application");
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/menu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/menuUI.fxml"));
         stage.setTitle("Sokoban game");
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setResizable(false);
+        stage.centerOnScreen();
         stage.show();
     }
 }

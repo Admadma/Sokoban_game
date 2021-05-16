@@ -20,12 +20,13 @@ import static javafx.scene.paint.Color.*;
 public class GameController {
 
     private GameModel model;
+    private String PlayerName = "";
 
     @FXML
     private GridPane board;
 
-    public void createGame(String loadingType){
-        this.model = new GameModel(loadingType);
+    public void createGame(String loadingType, String playerName){
+        this.model = new GameModel(loadingType, playerName);
         createBoard();
         createPlayer();
         createWalls();

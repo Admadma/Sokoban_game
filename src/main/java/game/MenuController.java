@@ -17,19 +17,43 @@ import java.io.IOException;
 public class MenuController {
 
     @FXML
-    private void startNewGame(ActionEvent event) throws IOException {
-        startGame(event, "/DefaultGameState.xml");
+    private void onStartNewGame(ActionEvent event) throws IOException {
+        //startGame(event, "/DefaultGameState.xml");
+        String sourceFile = "/DefaultGameState.xml";
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/selectName.fxml"));
+        Parent root = fxmlLoader.load();
+        SelectNameController controller = fxmlLoader.<SelectNameController>getController();
+        controller.setSourceFile(sourceFile);
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
     }
 
     @FXML
     private void onLoadGame(ActionEvent event) throws IOException {
-        String savedDataPath = System.getProperty("user.dir") + "/helperFolder" + "/SavedGameState.xml";
+        String sourceFile = "/SavedGameState.xml";
+        String savedDataPath = System.getProperty("user.dir") + "/helperFolder" + sourceFile;
         File saveFile = new File(savedDataPath);
         if(saveFile.exists()){
-            startGame(event, "/SavedGameState.xml");
+            //startGame(event, sourceFile);
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/gameUI.fxml"));
+            Parent root = fxmlLoader.load();
+            GameController controller = fxmlLoader.<GameController>getController();
+            controller.createGame(sourceFile, "");
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root, 800, 800);
+            scene.getRoot().requestFocus();
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
         } else {
             Logger.warn("Couldn't find savefile, loading default game");
-            startNewGame(event);
+            onStartNewGame(event);
         }
     }
 
@@ -37,7 +61,7 @@ public class MenuController {
     @FXML
     private void onInfo(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/InfoMenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/infoMenuUI.fxml"));
         stage.setScene(new Scene(root));
         stage.show();
     }
@@ -49,6 +73,18 @@ public class MenuController {
     }
 
     private void startGame(ActionEvent event, String sourceFile) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/selectName.fxml"));
+        Parent root = fxmlLoader.load();
+        SelectNameController controller = fxmlLoader.<SelectNameController>getController();
+        controller.setSourceFile(sourceFile);
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
+        /*
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/gameUI.fxml"));
         Parent root = fxmlLoader.load();
         GameController controller = fxmlLoader.<GameController>getController();
@@ -60,5 +96,7 @@ public class MenuController {
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();
+
+         */
     }
 }

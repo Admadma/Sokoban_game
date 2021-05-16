@@ -17,20 +17,29 @@ public class GameModel {
     private final Entity[] walls;
     private final Entity[] balls;
     private final Entity[] goals;
+
     private int numberOfMoves;
+    private String playerName;
 
     /**
      * Creates a GameModel object with entities from the sourcefile.
      *
      * @param sourceFile XML file containing x and y parameters for all the entities on the game board
+     * @param playerName when starting a new game users can enter their names.
      */
-    public GameModel(String sourceFile){
+    public GameModel(String sourceFile, String playerName){
+
         GameState gameState = null;
         try {
             gameState = XmlToJava.parseXml(sourceFile);
         } catch (Exception e) {
             Logger.error("Failed to load game from XML");
             Platform.exit();
+        }
+        if(playerName.equals("")){
+            this.playerName = gameState.getPlayerName();
+        } else {
+            this.playerName = playerName;
         }
         int[][] wallPositions = new int[gameState.getWallXValues().length][2];
         for(int i = 0; i < gameState.getWallXValues().length; i++){
@@ -191,7 +200,7 @@ public class GameModel {
                     return;
             }
             completed = true;
-            Logger.info("Game completed in {} moves.", numberOfMoves);
+            Logger.info("{} completed the game in {} moves.", playerName, numberOfMoves);
         }
     }
 
@@ -208,7 +217,7 @@ public class GameModel {
      */
     public void saveGame(){
         try {
-            JavaToXml.createXml(numberOfMoves, player, walls, balls, goals);
+            JavaToXml.createXml(numberOfMoves, playerName, player, walls, balls, goals);
             Logger.info("Game saved");
         } catch (Exception e) {
             Logger.warn("Failed to save game");

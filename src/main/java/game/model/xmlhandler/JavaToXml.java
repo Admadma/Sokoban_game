@@ -15,16 +15,18 @@ public class JavaToXml {
      * and adds them to the XML.
      *
      * @param moves the number of moves the player took since the start
+     * @param playerName name of the player who saved the game
      * @param player the player Entity
      * @param walls the array of wall Entities
      * @param balls the array of ball Entities
      * @param goals the array of goal Entities
      * @throws Exception if failed to create the XML
      */
-    public static void createXml(int moves, Entity player, Entity[] walls, Entity[] balls, Entity[] goals) throws Exception{
+    public static void createXml(int moves, String playerName, Entity player, Entity[] walls, Entity[] balls, Entity[] goals) throws Exception{
         var gameState = new GameState();
 
         gameState.setNumberOfMoves(moves);
+        gameState.setPlayerName(playerName);
 
         int[] playerX = new int[]{player.getPosition().col()};
         gameState.setPlayerXValues(playerX);

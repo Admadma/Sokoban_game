@@ -13,6 +13,8 @@ public class GameState {
 
     private int numberOfMoves;
 
+    private String playerName;
+
     @XmlElementWrapper(name = "playerXValues")
     @XmlElement(name = "x")
     private int[] playerXValues;
