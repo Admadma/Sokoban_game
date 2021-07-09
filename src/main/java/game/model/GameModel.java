@@ -3,9 +3,10 @@ package game.model;
 import javafx.application.Platform;
 import javafx.beans.property.*;
 
-//import game.model.xmlhandler.*;
 import game.xmlhandler.*;
 import org.tinylog.Logger;
+
+import java.io.FileNotFoundException;
 
 /**
  * Class representing the state of Entities on the board.
@@ -29,14 +30,14 @@ public class GameModel {
      * @param sourceFile XML file containing x and y parameters for all the entities on the game board
      * @param playerName when starting a new game users can enter their names.
      */
-    public GameModel(String sourceFile, String playerName){
+    public GameModel(String sourceFile, String playerName) throws Exception{
 
         GameState gameState = null;
         try {
             gameState = XmlToJava.parseXml(sourceFile);
         } catch (Exception e) {
             Logger.error("Failed to load game from XML");
-            Platform.exit();
+            throw new FileNotFoundException("Couldn't load game from file.");
         }
         if(playerName.equals("")){
             this.playerName = gameState.getPlayerName();
@@ -46,7 +47,7 @@ public class GameModel {
 
         this.numberOfMoves = gameState.getNumberOfMoves();
 
-        this.player = new Entity(EntityType.Player, new Position(gameState.getPlayerYValues()[0],gameState.getPlayerXValues()[0]));
+        this.player = new Entity(EntityType.PLAYER, new Position(gameState.getPlayerYValues()[0],gameState.getPlayerXValues()[0]));
 
         int[][] wallPositions = new int[gameState.getWallXValues().length][2];
         for(int i = 0; i < gameState.getWallXValues().length; i++){
@@ -55,7 +56,7 @@ public class GameModel {
         }
         this.walls = new Entity[wallPositions.length];
         for(int i = 0; i < wallPositions.length; i++){
-            this.walls[i] = new Entity(EntityType.Wall, new Position(wallPositions[i][0], wallPositions[i][1]));
+            this.walls[i] = new Entity(EntityType.WALL, new Position(wallPositions[i][0], wallPositions[i][1]));
         }
 
         int[][] ballPositions = new int[gameState.getBallXValues().length][2];
@@ -65,7 +66,7 @@ public class GameModel {
         }
         this.balls = new Entity[ballPositions.length];
         for(int i = 0; i < ballPositions.length; i++){
-            this.balls[i] = new Entity(EntityType.Ball, new Position(ballPositions[i][0], ballPositions[i][1]));
+            this.balls[i] = new Entity(EntityType.BALL, new Position(ballPositions[i][0], ballPositions[i][1]));
         }
 
         int[][] goalPositions = new int[gameState.getGoalXValues().length][2];
@@ -75,7 +76,7 @@ public class GameModel {
         }
         this.goals = new Entity[goalPositions.length];
         for(int i = 0; i < goalPositions.length; i++){
-            this.goals[i] = new Entity(EntityType.Goal, new Position(goalPositions[i][0], goalPositions[i][1]));
+            this.goals[i] = new Entity(EntityType.GOAL, new Position(goalPositions[i][0], goalPositions[i][1]));
         }
     }
 
@@ -228,17 +229,6 @@ public class GameModel {
             Logger.info("{} completed the game in {} moves.", playerName, numberOfMoves);
         }
     }
-/*
-    private void checkGoals(){
-        if (!completed) {
-            for (var goal : goals) {
-                if (!ballOnIt(goal))
-                    return;
-            }
-            completed = true;
-            Logger.info("{} completed the game in {} moves.", playerName, numberOfMoves);
-        }
-    }*/
 
     private boolean ballOnIt(Entity goal){
         for(var ball : balls){
@@ -260,13 +250,4 @@ public class GameModel {
         }
 
     }
-
-    /**
-     * Exits the game.
-     */
-    public void quitGame(){
-        Logger.debug("Exiting game");
-        Platform.exit();
-    }
-
 }

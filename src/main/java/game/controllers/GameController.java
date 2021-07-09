@@ -2,6 +2,7 @@ package game.controllers;
 
 import game.model.*;
 import game.model.GameModel;
+import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,15 +33,20 @@ public class GameController {
 
     public void createGame(String loadingType, String playerName, Stage stage){
         this.stage = stage;
-        this.model = new GameModel(loadingType, playerName);
-        model.isGameCompleteProperty().addListener(this::isGameComplete);
-        createBoard();
-        createPlayer();
-        createWalls();
-        createGoals();
-        createBalls();
-        board.setOnKeyPressed(this::handleKeyPress);
-        Logger.info("Created the game");
+        try {
+            this.model = new GameModel(loadingType, playerName);
+            model.isGameCompleteProperty().addListener(this::isGameComplete);
+            createBoard();
+            createWalls();
+            createGoals();
+            createBalls();
+            createPlayer();
+            board.setOnKeyPressed(this::handleKeyPress);
+            Logger.info("Created the game");
+        } catch (Exception e){
+            Logger.error(e.getMessage());
+            Platform.exit();
+        }
     }
 
     private void createBoard() {
@@ -138,12 +144,17 @@ public class GameController {
                 model.saveGame();
                 break;
             case Q:
-                model.quitGame();
+                quitGame();
                 break;
             default:
                 Logger.warn("Invalid key");
                 break;
         }
+    }
+
+    public void quitGame(){
+        Logger.debug("Exiting game");
+        Platform.exit();
     }
 
     private StackPane getTile(Position position){

@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class EntityTest {
     Position testPosition = new Position(1,1);
-    Entity testPlayerEntity = new Entity(EntityType.Player, testPosition);
+    Entity testPlayerEntity = new Entity(EntityType.PLAYER, testPosition);
 
     @Test
     void testGetPosition(){

@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 <modelVersion>4.0.0</modelVersion>
 <groupId>hu.unideb.inf</groupId>
-<artifactId>game_project</artifactId>
+<artifactId>sokoban_game</artifactId>
 <version>1.0</version>
 <packaging>jar</packaging>
 <description>Sokoban game implemented in JavaFX</description>
@@ -15,7 +15,7 @@
     </developer>
 </developers>
 <scm>
-    <developerConnection>scm:git:https://github.com/Admadma/game_project.git</developerConnection>
+    <developerConnection>scm:git:https://github.com/Admadma/Sokoban_game.git</developerConnection>
 </scm>
 <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

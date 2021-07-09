@@ -1,6 +1,14 @@
-game_project
+Sokoban játék
 ============
 
-Sokoban game implemented in [JavaFX](https://openjfx.io/).
+A következő program egy Sokoban játék Java 16 implementációja [JavaFX](https://openjfx.io/) segítségével.
 
-On first run, the program creates a hidden directory in the current directory to store saved game data.
+Model–view–controller architekturális minta szerint épül fel, tehát elkülönülnek a modell, a felhasználói felület és a vezérlést kezelő részek.
+
+A program többek között végez:
+
+* Felhasználói input/output kezelést
+* Logolást
+* XML fájlból való olvasást/írást
+* Jelentéskészítést
+* Egységtesztelést

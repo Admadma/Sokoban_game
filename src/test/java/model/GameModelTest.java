@@ -10,6 +10,9 @@ import static org.junit.jupiter.api.Assertions.*;
 public class GameModelTest {
     GameModel testModel = new GameModel("/TestGameState.xml", "testPlayer");
 
+    public GameModelTest() throws Exception {
+    }
+
     @Test
     void testGetPlayerName(){
         assertEquals("testPlayer", testModel.getPlayerName());
@@ -104,12 +107,27 @@ public class GameModelTest {
     }
 
     @Test
-    void testSaveGame(){
-        testModel.saveGame();
+    void testBallPushed(){
+        Position ball0StartPos = testModel.ballPosition(0);
+        Position ball1StartPos = testModel.ballPosition(1);
+        Position ball2StartPos = testModel.ballPosition(2);
+
+        testModel.moveThere(Direction.RIGHT);
+        assertEquals(ball0StartPos, testModel.ballPosition(0));
+        assertEquals(ball1StartPos, testModel.ballPosition(1));
+
+        System.out.println(ball2StartPos);
+        testModel.moveThere(Direction.DOWN);
+        testModel.moveThere(Direction.RIGHT);
+        assertEquals(ball2StartPos.moveTo(Direction.RIGHT), testModel.ballPosition(2));
+
+
+        testModel.moveThere(Direction.UP);
+        assertEquals(ball0StartPos, testModel.ballPosition(0));
     }
 
     @Test
-    void testQuitGame(){
-        testModel.quitGame();
+    void testSaveGame(){
+        testModel.saveGame();
     }
 }
